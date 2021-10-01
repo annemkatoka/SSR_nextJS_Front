@@ -1,0 +1,35 @@
+{
+  "name": "fact",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "formik": "^2.1.5",
+    "jspdf": "^2.1.1",
+    "jspdf-autotable": "^3.5.13",
+    "material-table": "^1.69.0",
+    "next": "9.5.2",
+    "react": "16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-buttons": "0.0.11",
+    "react-dom": "16.13.1",
+    "react-modal": "^3.11.2",
+    "react-router-dom": "^5.2.0",
+    "react-script-tag": "^1.1.2",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.17.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1"
+  }
+}
