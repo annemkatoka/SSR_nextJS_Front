@@ -147,11 +147,16 @@ export default function UsuariosTable() {
   const [filterDisplay, setFilterDisplay] = useState([]);
 
   const UsuariosList = async () => {
-    const usuariosConsulta = await clienteAxios.get("/usuarios");
-    debugger;
+    //const usuariosConsulta = await clienteAxios.get("/usuarios");
+    const usuariosConsulta = [{id: 1, username:"Oscar34", access_level:"1", perfil:"ADMIN"},
+    {id: 2, username:"Oscar34", access_level:"1", perfil:"PROVEEDOR"},
+    {id: 3, username:"Oscar34", access_level:"1", perfil:"CLIENTE"},
+    {id: 4, username:"Oscar34", access_level:"1", perfil:"ADMIN"},
+    {id: 5, username:"Oscar34", access_level:"1", perfil:"ADMIN"},
+    {id: 6, username:"Oscar34", access_level:"1", perfil:"ADMIN"}]
     //Guardar Resultado de Consulta en el State
-    setlistadoUsuarios(usuariosConsulta.data);
-    setFilterDisplay(usuariosConsulta.data);
+    setlistadoUsuarios(usuariosConsulta);
+    setFilterDisplay(usuariosConsulta);
   };
 
   useEffect(() => {
@@ -183,19 +188,20 @@ export default function UsuariosTable() {
   //Eliminar Dato
   const handleDelete = async (id) => {
     try {
-      const respuesta = await clienteAxios.delete(`/personas/${id}`);
-      console.log(respuesta);
-      Swal.fire("Eliminada!", "Persona eliminada de la base!", "success");
+      //const respuesta = await clienteAxios.delete(`/personas/${id}`);
+      const lista = listadoUsuarios.filter((usuario) =>
+      usuario.id != id
+      );
+      setFilterDisplay(lista)
+      setlistadoUsuarios(lista)
+      Swal.fire("Eliminado!", "Usuario eliminado de la base!", "success");
 
-      setTimeout(() => {
-        router.reload();
-      });
     } catch (error) {
       console.log(error);
       Swal.fire({
         icon: "error",
         title: "Hubo un Error",
-        text: error.response.data.message,
+        text: "",
       });
     }
   };

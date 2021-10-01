@@ -142,10 +142,15 @@ export default function ProductosTable() {
   const [filterDisplay, setFilterDisplay] = useState([]);
 
   const ProductosList = async () => {
-    const productosConsulta = await clienteAxios.get("/usuarios");
+    //const productosConsulta = await clienteAxios.get("/usuarios");
     //Guardar Resultado de Consulta en el State
-    setlistadoProductos(productosConsulta.data);
-    setFilterDisplay(productosConsulta.data);
+    const productosConsulta = [{cod_interno_producto: 1, descripcion_producto:"Arroz con leche", tipo:"Tipo1"},
+    {cod_interno_producto: 5, descripcion_producto:"Arroz con leche", tipo:"Tipo1"},
+    {cod_interno_producto: 45, descripcion_producto:"Arroz con leche", tipo:"Tipo1"},
+    {cod_interno_producto: 74, descripcion_producto:"Arroz lechuga", tipo:"Tipo1"},
+    {cod_interno_producto: 62, descripcion_producto:"Arroz", tipo:"Tipo1"}]
+    setlistadoProductos(productosConsulta);
+    setFilterDisplay(productosConsulta);
   };
 
   useEffect(() => {
@@ -177,13 +182,15 @@ export default function ProductosTable() {
   //Eliminar Dato
   const handleDelete = async (id) => {
     try {
-      const respuesta = await clienteAxios.delete(`/productos/${id}`);
-      console.log(respuesta);
-      Swal.fire("Eliminada!", "Producto eliminado de la base!", "success");
+      //const respuesta = await clienteAxios.delete(`/productos/${id}`);
+      //console.log(respuesta);
+      const lista = listadoProductos.filter((producto) =>
+      producto.cod_interno_producto != id
+      );
+      setFilterDisplay(lista)
+      setlistadoProductos(lista)
+      Swal.fire("Eliminado!", "Producto eliminado de la base!", "success");
 
-      setTimeout(() => {
-        router.reload();
-      });
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -290,7 +297,7 @@ export default function ProductosTable() {
                     <IconButton
                       aria-label="delete"
                       onClick={(e) => {
-                        handleDelete(filterDisplay.id_persona);
+                        handleDelete(filterDisplay.cod_interno_producto);
                       }}
                     >
                       <DeleteIcon style={{ fill: "red" }} />
